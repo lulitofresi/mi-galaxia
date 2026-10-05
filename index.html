@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lo más cerca que has estado de tocar mi corazón</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =================================
+         PANTALLA DE ENTRADA
+    ================================== -->
+
+    <div class="welcome-screen" id="welcomeScreen">
+
+        <div class="welcome-stars"></div>
+
+        <div class="welcome-content">
+
+            <div class="welcome-symbol">
+                ✦
+            </div>
+
+            <p class="welcome-small">
+                PARA TI
+            </p>
+
+            <h1>
+                Hay un pequeño<br>
+                universo que hice para ti...
+            </h1>
+
+            <p class="welcome-text">
+                Algunas cosas son difíciles de decir
+                con palabras.
+                <br>
+                Así que decidí esconderlas entre las estrellas.
+            </p>
+
+            <button
+                class="enter-button"
+                id="enterButton"
+            >
+                <span>ENTRAR A MI UNIVERSO</span>
+                <span class="enter-star">✦</span>
+            </button>
+
+            <p class="welcome-hint">
+                Ponte los audífonos ♫
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         GALAXIA
+    ================================== -->
+
+    <main
+        class="galaxy"
+        id="galaxy"
+    >
+
+        <div class="scene" id="scene">
+
+            <!-- FONDO -->
+
+            <div class="stars-background"></div>
+
+            <div class="stars-background stars-layer-two"></div>
+
+
+            <!-- NEBULOSAS -->
+
+            <div class="nebula nebula-one"></div>
+
+            <div class="nebula nebula-two"></div>
+
+            <div class="nebula nebula-three"></div>
+
+
+            <!-- ESTRELLAS FUGACES -->
+
+            <div class="shooting-star shooting-one"></div>
+
+            <div class="shooting-star shooting-two"></div>
+
+            <div class="shooting-star shooting-three"></div>
+
+
+            <!-- =================================
+                 CONSTELACIÓN DEL CORAZÓN
+            ================================== -->
+
+            <svg
+                class="constellation"
+                id="constellation"
+                viewBox="0 0 1000 700"
+                preserveAspectRatio="none"
+            >
+
+                <line
+                    id="line-1"
+                    x1="500"
+                    y1="170"
+                    x2="300"
+                    y2="210"
+                ></line>
+
+                <line
+                    id="line-2"
+                    x1="300"
+                    y1="210"
+                    x2="165"
+                    y2="390"
+                ></line>
+
+                <line
+                    id="line-3"
+                    x1="165"
+                    y1="390"
+                    x2="500"
+                    y2="585"
+                ></line>
+
+                <line
+                    id="line-4"
+                    x1="500"
+                    y1="585"
+                    x2="835"
+                    y2="390"
+                ></line>
+
+                <line
+                    id="line-5"
+                    x1="835"
+                    y1="390"
+                    x2="700"
+                    y2="210"
+                ></line>
+
+                <line
+                    id="line-6"
+                    x1="700"
+                    y1="210"
+                    x2="500"
+                    y2="170"
+                ></line>
+
+            </svg>
+
+
+            <!-- =================================
+                 PLANETA
+            ================================== -->
+
+            <div class="planet-container">
+
+                <div class="planet-ring ring-back"></div>
+
+                <div class="planet"></div>
+
+                <div class="planet-ring ring-front"></div>
+
+            </div>
+
+
+            <!-- =================================
+                 ESTRELLAS
+            ================================== -->
+
+            <button
+                class="star star-one"
+                data-id="1"
+                data-title="Nuestro comienzo"
+                data-message="Hay personas que llegan a nuestra vida sin hacer demasiado ruido, casi sin avisar, y aun así terminan ocupando un espacio que no sabíamos que estaba esperando por alguien. Creo que contigo pasó algo parecido. Poco a poco empezaste a formar parte de mis pensamientos, de mis días y de esas pequeñas cosas que de repente me hacen sonreír sin darme cuenta."
+            >
+                ✦
+            </button>
+
+
+            <button
+                class="star star-two"
+                data-id="2"
+                data-title="Lo que empezó a cambiar"
+                data-message="No sé exactamente en qué momento dejaste de ser simplemente alguien que me gustaba conocer y empezaste a convertirte en alguien que realmente me importaba. Tal vez fue en una conversación, en una mirada, en una risa o en uno de esos momentos que parecen insignificantes mientras ocurren, pero que después uno recuerda con muchísimo cariño."
+            >
+                ✦
+            </button>
+
+
+            <button
+                class="star star-three"
+                data-id="3"
+                data-title="Lo que me gusta de ti"
+                data-message="Me gustan muchas cosas de ti, incluso algunas que probablemente tú ni siquiera consideras especiales. Me gusta tu forma de hablar, tus ocurrencias y la manera en que puedes hacer que un momento sencillo se sienta diferente. Pero sobre todo me gusta cómo me siento cuando estoy contigo: como si pudiera bajar un poco la guardia y simplemente ser yo."
+            >
+                ✦
+            </button>
+
+
+            <button
+                class="star star-four"
+                data-id="4"
+                data-title="Un lugar especial"
+                data-message="Hay recuerdos que no necesitan ser enormes para quedarse con nosotros. A veces basta una conversación, una tarde cualquiera, una mirada que duró un poquito más de lo normal o una risa compartida. Y aunque quizás para ti algunos de esos momentos fueron pequeños, para mí se han ido convirtiendo en pedacitos de una historia que guardo con muchísimo cariño."
+            >
+                ✦
+            </button>
+
+
+            <button
+                class="star star-five"
+                data-id="5"
+                data-title="Si alguna vez te preguntas..."
+                data-message="Si alguna vez te preguntas qué significas para mí, probablemente no encontraría una respuesta que pudiera explicarlo completamente. Porque no se trata solamente de cuánto me gustas. Se trata de la ilusión que me provoca conocerte cada vez más, de las ganas de compartir cosas contigo y de esa sensación bonita que aparece cuando pienso que, entre tantas personas y tantos caminos posibles, nuestros caminos terminaron encontrándose."
+            >
+                ✦
+            </button>
+
+
+            <button
+                class="star star-six"
+                data-id="6"
+                data-title="La última estrella"
+                data-message="Y quizás esta sea la parte más difícil de decir: no sé exactamente qué va a pasar después. No quiero inventar un futuro ni prometer cosas que todavía no conocemos. Solo sé que me gusta lo que existe entre nosotros, me gusta descubrirte y me gusta la posibilidad de que esto pueda convertirse en algo todavía más bonito. Así que, por ahora, quiero seguir explorando esta pequeña galaxia contigo."
+            >
+                ✦
+            </button>
+
+
+            <!-- =================================
+                 ESTRELLA SECRETA
+            ================================== -->
+
+            <button
+                class="secret-star"
+                id="secretStar"
+                data-title="La estrella que guardé para el final"
+                data-message="De todas las estrellas que existen, qué curioso que precisamente tú hayas terminado siendo una de mis favoritas. ✦"
+            >
+                ✦
+            </button>
+
+        </div>
+
+
+        <!-- =================================
+             INTRODUCCIÓN
+        ================================== -->
+
+        <section class="intro">
+
+            <p class="small-title">
+                PARA TI
+            </p>
+
+            <h1>
+                Lo más cerca que has estado<br>
+                de tocar mi corazón
+            </h1>
+
+            <p class="subtitle">
+                Hay cosas que son difíciles de decir en voz alta...
+                así que decidí esconderlas entre las estrellas.
+            </p>
+
+        </section>
+
+
+        <!-- =================================
+             PROGRESO
+        ================================== -->
+
+        <div class="progress">
+
+            <span id="progressNumber">
+                0
+            </span>
+
+            <span>/</span>
+
+            <span>
+                6
+            </span>
+
+            <small>
+                estrellas descubiertas
+            </small>
+
+        </div>
+
+
+        <!-- =================================
+             INDICACIÓN
+        ================================== -->
+
+        <div class="drag-hint">
+
+            ARRASTRA PARA EXPLORAR
+
+            <span>✦</span>
+
+        </div>
+
+
+        <!-- =================================
+             MÚSICA
+        ================================== -->
+
+        <audio
+            id="backgroundMusic"
+            loop
+            preload="auto"
+        >
+
+            <source
+                src="musica.mp3"
+                type="audio/mpeg"
+            >
+
+        </audio>
+
+
+        <!-- =================================
+             BOTÓN DE MÚSICA
+        ================================== -->
+
+        <button
+            class="music-button"
+            id="musicButton"
+            aria-label="Reproducir música"
+        >
+
+            ♫
+
+            <span id="musicText">
+                Música
+            </span>
+
+        </button>
+
+    </main>
+
+
+    <!-- =================================
+         ZOOM
+    ================================== -->
+
+    <div
+        class="zoom-overlay"
+        id="zoomOverlay"
+    >
+
+        <div
+            class="zoom-star"
+            id="zoomStar"
+        >
+            ✦
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         MENSAJE
+    ================================== -->
+
+    <div
+        class="message-overlay"
+        id="messageOverlay"
+    >
+
+        <div class="message-card">
+
+            <button
+                class="close-button"
+                id="closeButton"
+                aria-label="Cerrar mensaje"
+            >
+                ×
+            </button>
+
+
+            <div class="message-decoration">
+                ✦
+            </div>
+
+
+            <p class="message-label">
+                UNA PEQUEÑA PARTE DE MI UNIVERSO
+            </p>
+
+
+            <h2 id="messageTitle"></h2>
+
+
+            <div class="message-line"></div>
+
+
+            <p id="messageText"></p>
+
+
+            <div class="message-bottom">
+                ✦
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

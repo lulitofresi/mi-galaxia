@@ -1,0 +1,2335 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #02010a;
+    color: white;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================================
+   PANTALLA DE ENTRADA
+========================================= */
+
+.welcome-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(91, 26, 117, 0.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(54, 17, 90, 0.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(105, 34, 110, 0.18),
+            transparent 30%
+        ),
+        #02010a;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+
+/*
+    Cuando desaparece
+*/
+
+.welcome-screen.hidden {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   ESTRELLAS DE LA PANTALLA INICIAL
+========================================= */
+
+.welcome-stars,
+.welcome-stars::before,
+.welcome-stars::after {
+    position: absolute;
+
+    inset: 0;
+
+    content: "";
+
+    pointer-events: none;
+}
+
+
+/* Capa principal */
+
+.welcome-stars {
+    opacity: 0.8;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.9) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,220,255,0.7) 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        110px 110px,
+        190px 190px;
+
+    background-position:
+        20px 30px,
+        80px 90px;
+
+    animation:
+        welcomeStarsMove 40s linear infinite;
+}
+
+
+/* Estrellas más pequeñas */
+
+.welcome-stars::before {
+
+    opacity: 0.45;
+
+    background-image:
+        radial-gradient(
+            circle,
+            white 0.7px,
+            transparent 1px
+        );
+
+    background-size:
+        65px 65px;
+
+    animation:
+        welcomeStarsMoveReverse 28s linear infinite;
+}
+
+
+/* Brillo central */
+
+.welcome-stars::after {
+
+    inset: 20%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(204,105,255,0.15),
+            transparent 60%
+        );
+
+    filter: blur(30px);
+}
+
+
+@keyframes welcomeStarsMove {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(-35px, 25px);
+    }
+
+}
+
+
+@keyframes welcomeStarsMoveReverse {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(25px, -20px);
+    }
+
+}
+
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+.welcome-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(700px, 90vw);
+
+    text-align: center;
+
+    animation:
+        welcomeContentAppear 2s ease forwards;
+}
+
+
+@keyframes welcomeContentAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   SÍMBOLO
+========================================= */
+
+.welcome-symbol {
+
+    margin-bottom: 25px;
+
+    color: #f7d9ff;
+
+    font-size: 38px;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 20px #f1a5ff,
+        0 0 45px #bd54e8;
+
+    animation:
+        welcomeSymbolPulse 3s
+        ease-in-out infinite;
+}
+
+
+@keyframes welcomeSymbolPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(0.9);
+
+        opacity: 0.7;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =========================================
+   "PARA TI"
+========================================= */
+
+.welcome-small {
+
+    margin-bottom: 18px;
+
+    font-size: 10px;
+
+    letter-spacing: 7px;
+
+    color:
+        rgba(255,215,255,0.65);
+
+    animation:
+        welcomeTextAppear 1.5s
+        ease 0.3s both;
+}
+
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.welcome-content h1 {
+
+    font-size:
+        clamp(34px, 6vw, 65px);
+
+    line-height: 1.1;
+
+    font-weight: normal;
+
+    color: #fff8ff;
+
+    text-shadow:
+        0 0 10px rgba(255,220,255,0.35),
+        0 0 35px rgba(185,75,225,0.28);
+
+    animation:
+        welcomeTextAppear 1.7s
+        ease 0.5s both;
+}
+
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.welcome-text {
+
+    max-width: 520px;
+
+    margin:
+        27px auto 0;
+
+    font-size:
+        clamp(14px, 1.6vw, 17px);
+
+    line-height: 1.8;
+
+    color:
+        rgba(255,238,255,0.72);
+
+    animation:
+        welcomeTextAppear 1.7s
+        ease 0.8s both;
+}
+
+
+@keyframes welcomeTextAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   BOTÓN ENTRAR
+========================================= */
+
+.enter-button {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    margin-top: 38px;
+
+    padding:
+        15px
+        25px;
+
+    border:
+        1px solid
+        rgba(239,183,255,0.45);
+
+    border-radius: 50px;
+
+    background:
+        rgba(35,10,48,0.55);
+
+    color:
+        rgba(255,238,255,0.9);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 20px
+        rgba(195,78,240,0.12);
+
+    overflow: hidden;
+
+    animation:
+        buttonAppear 1.8s
+        ease 1.1s both;
+
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+.enter-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 80%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,220,255,0.18),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.7s ease;
+}
+
+
+.enter-button:hover::before {
+
+    left: 130%;
+
+}
+
+
+.enter-button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    background:
+        rgba(76,25,92,0.65);
+
+    border-color:
+        rgba(247,201,255,0.8);
+
+    box-shadow:
+        0 0 25px
+        rgba(211,91,255,0.3),
+        0 0 60px
+        rgba(171,65,215,0.12);
+
+}
+
+
+.enter-button:active {
+
+    transform:
+        translateY(0)
+        scale(0.98);
+
+}
+
+
+.enter-star {
+
+    color: #f4c7ff;
+
+    font-size: 17px;
+
+    text-shadow:
+        0 0 10px #e28aff;
+
+    animation:
+        enterStarPulse 2s
+        ease-in-out infinite;
+}
+
+
+@keyframes buttonAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes enterStarPulse {
+
+    0%,
+    100% {
+
+        opacity: 0.6;
+
+        transform:
+            scale(0.9);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+
+/* =========================================
+   TEXTO DE AUDÍFONOS
+========================================= */
+
+.welcome-hint {
+
+    margin-top: 20px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,0.3);
+
+    animation:
+        welcomeTextAppear 1.5s
+        ease 1.5s both;
+}
+
+
+/* =========================================
+   GALAXIA
+========================================= */
+
+.galaxy {
+
+    position: relative;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(112, 39, 145, 0.25),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(53, 20, 102, 0.28),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(107, 35, 111, 0.2),
+            transparent 35%
+        ),
+        #02010a;
+
+    cursor: grab;
+
+    touch-action: none;
+
+    transition:
+        filter 0.8s ease,
+        transform 0.8s ease;
+}
+
+.galaxy.dragging {
+
+    cursor: grabbing;
+
+}
+
+.galaxy.zooming {
+
+    filter:
+        blur(4px)
+        brightness(0.4);
+
+    transform:
+        scale(1.07);
+}
+
+.galaxy.zooming .intro,
+.galaxy.zooming .progress,
+.galaxy.zooming .drag-hint {
+
+    opacity: 0;
+
+}
+
+
+/* =========================================
+   ESCENA
+========================================= */
+
+.scene {
+
+    position: absolute;
+
+    left: -8%;
+
+    top: -8%;
+
+    width: 116%;
+
+    height: 116%;
+
+    transform-origin: center;
+
+    will-change: transform;
+}
+
+
+/* =========================================
+   ESTRELLAS DE FONDO
+========================================= */
+
+.stars-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.95) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.65) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.4) 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        130px 130px,
+        210px 210px,
+        320px 320px;
+
+    background-position:
+        20px 40px,
+        80px 10px,
+        150px 120px;
+
+    opacity: 0.7;
+
+    animation:
+        starDrift 35s linear infinite;
+}
+
+.stars-layer-two {
+
+    opacity: 0.35;
+
+    background-size:
+        170px 170px,
+        260px 260px,
+        400px 400px;
+
+    animation-duration: 55s;
+
+    animation-direction: reverse;
+}
+
+
+@keyframes starDrift {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(-40px, 30px);
+    }
+
+}
+
+
+/* =========================================
+   NEBULOSAS
+========================================= */
+
+.nebula {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter:
+        blur(70px);
+
+    pointer-events: none;
+
+    opacity: 0.35;
+
+    animation:
+        nebulaFloat 14s
+        ease-in-out
+        infinite alternate;
+}
+
+
+.nebula-one {
+
+    width: 420px;
+
+    height: 300px;
+
+    left: 5%;
+
+    top: 15%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(150,52,180,0.6),
+            transparent 70%
+        );
+}
+
+
+.nebula-two {
+
+    width: 500px;
+
+    height: 350px;
+
+    right: 0;
+
+    bottom: 5%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(63,32,160,0.55),
+            transparent 70%
+        );
+
+    animation-delay:
+        -5s;
+}
+
+
+.nebula-three {
+
+    width: 350px;
+
+    height: 250px;
+
+    left: 40%;
+
+    top: 40%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(211,55,144,0.25),
+            transparent 70%
+        );
+
+    animation-delay:
+        -8s;
+}
+
+
+@keyframes nebulaFloat {
+
+    from {
+
+        transform:
+            translate3d(-20px,-10px,0)
+            scale(1);
+
+    }
+
+    to {
+
+        transform:
+            translate3d(25px,20px,0)
+            scale(1.08);
+
+    }
+
+}
+
+
+/* =========================================
+   CONSTELACIÓN
+========================================= */
+
+.constellation {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.constellation line {
+
+    stroke:
+        rgba(244,184,255,0.8);
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+
+    stroke-dasharray:
+        7 10;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(220,120,255,0.9)
+        );
+
+    transition:
+        opacity 1.2s ease;
+}
+
+
+.constellation line.visible {
+
+    opacity: 1;
+
+    animation:
+        constellationGlow
+        2.5s ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes constellationGlow {
+
+    from {
+        stroke-opacity: 0.45;
+    }
+
+    to {
+        stroke-opacity: 1;
+    }
+
+}
+
+
+/* =========================================
+   CORAZÓN COMPLETO
+========================================= */
+
+.constellation.complete line {
+
+    stroke:
+        rgba(255,196,255,0.95);
+
+    stroke-width: 2.5;
+
+    filter:
+        drop-shadow(0 0 7px #ffb8ff)
+        drop-shadow(0 0 18px #d965ff);
+
+    animation:
+        heartGlow 1.5s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes heartGlow {
+
+    from {
+        opacity: 0.7;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================
+   PLANETA
+========================================= */
+
+.planet-container {
+
+    position: absolute;
+
+    left: 84%;
+
+    top: 77%;
+
+    width: 230px;
+
+    height: 230px;
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+
+    animation:
+        planetFloat 6s
+        ease-in-out
+        infinite;
+}
+
+
+.planet {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 125px;
+
+    height: 125px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 32% 28%,
+            rgba(255,213,248,0.95),
+            rgba(190,98,200,0.9) 20%,
+            rgba(94,35,130,0.95) 58%,
+            rgba(25,7,46,1) 100%
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(211,113,255,0.55),
+        0 0 70px
+        rgba(139,54,190,0.35);
+}
+
+
+.planet-ring {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 215px;
+
+    height: 62px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-18deg);
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        rgba(231,177,255,0.7);
+
+    box-shadow:
+        0 0 8px
+        rgba(236,190,255,0.7);
+}
+
+
+.ring-back {
+    z-index: 1;
+}
+
+
+.ring-front {
+
+    z-index: 4;
+
+    clip-path:
+        polygon(
+            0 50%,
+            100% 50%,
+            100% 100%,
+            0 100%
+        );
+}
+
+
+@keyframes planetFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-10px);
+
+    }
+
+}
+
+
+/* =========================================
+   ESTRELLAS INTERACTIVAS
+========================================= */
+
+.star {
+
+    position: absolute;
+
+    width: 48px;
+
+    height: 48px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 12px rgba(255,174,255,0.9),
+        0 0 25px rgba(182,85,255,0.8);
+
+    animation:
+        starPulse 3s
+        ease-in-out
+        infinite;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+
+.star:hover {
+
+    transform:
+        scale(1.6);
+
+    color:
+        #ffd9ff;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 18px #ff9dff,
+        0 0 40px #bb55ff;
+}
+
+
+/* Puntos del corazón */
+
+.star-one {
+
+    left: 47%;
+
+    top: 19%;
+}
+
+
+.star-two {
+
+    left: 27%;
+
+    top: 24%;
+
+    animation-delay:
+        -0.7s;
+}
+
+
+.star-three {
+
+    left: 13%;
+
+    top: 51%;
+
+    animation-delay:
+        -1.5s;
+}
+
+
+.star-four {
+
+    left: 47%;
+
+    top: 78%;
+
+    animation-delay:
+        -2.2s;
+}
+
+
+.star-five {
+
+    left: 80%;
+
+    top: 51%;
+
+    animation-delay:
+        -1s;
+}
+
+
+.star-six {
+
+    left: 67%;
+
+    top: 24%;
+
+    animation-delay:
+        -2.8s;
+}
+
+
+.star.discovered {
+
+    color:
+        #ffd8ff;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 18px #ffb2ff,
+        0 0 35px #d76aff;
+
+    animation:
+        discoveredPulse 2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes starPulse {
+
+    0%,
+    100% {
+
+        opacity: 0.7;
+
+        transform:
+            scale(0.9);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+
+@keyframes discoveredPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+}
+
+
+/* =========================================
+   ESTRELLA SECRETA
+========================================= */
+
+.secret-star {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 38%;
+
+    width: 70px;
+
+    height: 70px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 40px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 30;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 20px #ff9cff,
+        0 0 50px #d45cff;
+}
+
+
+.secret-star.unlocked {
+
+    pointer-events: auto;
+
+    animation:
+        secretAppear 1.5s ease forwards,
+        secretPulse 2.5s
+        ease-in-out
+        1.5s infinite;
+}
+
+
+@keyframes secretAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0)
+            rotate(-180deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+@keyframes secretPulse {
+
+    0%,
+    100% {
+
+        filter:
+            brightness(1);
+
+    }
+
+    50% {
+
+        filter:
+            brightness(1.8);
+
+    }
+
+}
+
+
+/* =========================================
+   ESTRELLAS FUGACES
+========================================= */
+
+.shooting-star {
+
+    position: absolute;
+
+    width: 130px;
+
+    height: 2px;
+
+    border-radius: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.15),
+            white
+        );
+
+    box-shadow:
+        0 0 6px white,
+        0 0 14px
+        rgba(221,158,255,0.9);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.shooting-star::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+
+    top: 50%;
+
+    width: 5px;
+
+    height: 5px;
+
+    transform:
+        translateY(-50%);
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 15px #f3c9ff;
+}
+
+
+.shooting-one {
+
+    left: -15%;
+
+    top: 18%;
+
+    transform:
+        rotate(-25deg);
+
+    animation:
+        shootingOne 8s
+        cubic-bezier(0.2,0.1,0.25,1)
+        infinite;
+}
+
+
+.shooting-two {
+
+    left: -20%;
+
+    top: 48%;
+
+    width: 100px;
+
+    transform:
+        rotate(-22deg);
+
+    animation:
+        shootingTwo 11s
+        cubic-bezier(0.2,0.1,0.25,1)
+        infinite 4s;
+}
+
+
+.shooting-three {
+
+    left: 55%;
+
+    top: -10%;
+
+    width: 115px;
+
+    transform:
+        rotate(48deg);
+
+    animation:
+        shootingThree 13s
+        cubic-bezier(0.2,0.1,0.25,1)
+        infinite 7s;
+}
+
+
+@keyframes shootingOne {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate3d(0,0,0)
+            rotate(-25deg)
+            scaleX(0.2);
+    }
+
+    7% {
+
+        opacity: 1;
+
+    }
+
+    18% {
+
+        opacity: 0.9;
+
+        transform:
+            translate3d(65vw,38vh,0)
+            rotate(-25deg)
+            scaleX(1.1);
+    }
+
+    24% {
+
+        opacity: 0;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+@keyframes shootingTwo {
+
+    0% {
+
+        opacity: 0;
+
+    }
+
+    6% {
+
+        opacity: 1;
+
+    }
+
+    17% {
+
+        opacity: 0.8;
+
+        transform:
+            translate3d(75vw,31vh,0)
+            rotate(-22deg)
+            scaleX(1);
+    }
+
+    23% {
+
+        opacity: 0;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+@keyframes shootingThree {
+
+    0% {
+
+        opacity: 0;
+
+    }
+
+    8% {
+
+        opacity: 1;
+
+    }
+
+    20% {
+
+        opacity: 0.8;
+
+        transform:
+            translate3d(-45vw,70vh,0)
+            rotate(48deg)
+            scaleX(1);
+    }
+
+    25% {
+
+        opacity: 0;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro {
+
+    position: absolute;
+
+    z-index: 50;
+
+    left: 50%;
+
+    top: 7%;
+
+    width:
+        min(900px, 90vw);
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.small-title {
+
+    margin-bottom: 14px;
+
+    font-size: 11px;
+
+    letter-spacing: 6px;
+
+    color:
+        rgba(255,210,255,0.75);
+}
+
+
+.intro h1 {
+
+    font-size:
+        clamp(30px, 5vw, 58px);
+
+    line-height: 1.12;
+
+    font-weight: normal;
+
+    color:
+        #fff8ff;
+
+    text-shadow:
+        0 0 10px
+        rgba(255,218,255,0.4),
+
+        0 0 35px
+        rgba(181,78,220,0.3);
+}
+
+
+.subtitle {
+
+    max-width: 600px;
+
+    margin: 20px auto 0;
+
+    font-size:
+        clamp(14px, 1.6vw, 18px);
+
+    line-height: 1.7;
+
+    color:
+        rgba(255,238,255,0.78);
+}
+
+
+/* =========================================
+   PROGRESO
+========================================= */
+
+.progress {
+
+    position: absolute;
+
+    right: 28px;
+
+    bottom: 25px;
+
+    z-index: 60;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 13px;
+
+    color:
+        rgba(255,230,255,0.65);
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.progress small {
+
+    margin-left: 7px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   INDICACIÓN
+========================================= */
+
+.drag-hint {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 5%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 60;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(255,255,255,0.55);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.drag-hint span {
+
+    color:
+        #f5c8ff;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   MÚSICA
+========================================= */
+
+.music-button {
+
+    position: absolute;
+
+    left: 25px;
+
+    bottom: 23px;
+
+    z-index: 80;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        9px 15px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid
+        rgba(240,190,255,0.25);
+
+    background:
+        rgba(20,7,32,0.55);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    color:
+        rgba(255,235,255,0.75);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px
+        rgba(180,80,220,0.08);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.music-button:hover {
+
+    background:
+        rgba(70,20,85,0.7);
+
+    color: white;
+
+    border-color:
+        rgba(240,190,255,0.5);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.music-button.playing {
+
+    color:
+        #ffd8ff;
+
+    border-color:
+        rgba(240,180,255,0.5);
+
+    box-shadow:
+        0 0 18px
+        rgba(215,100,255,0.2);
+}
+
+
+/* =========================================
+   ZOOM
+========================================= */
+
+.zoom-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 90;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(80,15,100,0.18),
+            rgba(0,0,0,0.96) 70%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.zoom-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.zoom-star {
+
+    position: fixed;
+
+    left: 50%;
+
+    top: 50%;
+
+    color: white;
+
+    font-size: 42px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #ffb8ff,
+        0 0 80px #c85cff;
+}
+
+
+.zoom-overlay.active .zoom-star {
+
+    animation:
+        starApproach 1.4s
+        cubic-bezier(0.15,0.8,0.25,1)
+        forwards;
+}
+
+
+@keyframes starApproach {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.2);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    55% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(4);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(15);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.message-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        rgba(3,0,12,0.72);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.message-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.message-card {
+
+    position: relative;
+
+    width:
+        min(650px, 92vw);
+
+    max-height: 82vh;
+
+    overflow-y: auto;
+
+    padding:
+        55px
+        55px
+        45px;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(36,13,53,0.96),
+            rgba(12,4,27,0.98)
+        );
+
+    border:
+        1px solid
+        rgba(239,174,255,0.25);
+
+    box-shadow:
+        0 0 50px
+        rgba(180,76,226,0.2),
+
+        inset 0 0 50px
+        rgba(173,83,219,0.04);
+
+    transform:
+        translateY(35px)
+        scale(0.9);
+
+    opacity: 0;
+
+    transition:
+        transform 0.6s ease,
+        opacity 0.5s ease;
+}
+
+
+.message-overlay.active .message-card {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    opacity: 1;
+}
+
+
+.close-button {
+
+    position: absolute;
+
+    top: 16px;
+
+    right: 20px;
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255,255,255,0.65);
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+.close-button:hover {
+
+    color: white;
+
+    transform:
+        rotate(90deg);
+}
+
+
+.message-decoration {
+
+    margin-bottom: 12px;
+
+    color:
+        #f4c8ff;
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 15px #dc7aff;
+}
+
+
+.message-label {
+
+    margin-bottom: 13px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(245,211,255,0.5);
+}
+
+
+.message-card h2 {
+
+    font-size:
+        clamp(25px, 4vw, 37px);
+
+    font-weight: normal;
+
+    color:
+        #fff5ff;
+
+    line-height: 1.25;
+}
+
+
+.message-line {
+
+    width: 70px;
+
+    height: 1px;
+
+    margin: 24px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(244,184,255,0.8),
+            transparent
+        );
+}
+
+
+.message-card #messageText {
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    color:
+        rgba(255,240,255,0.84);
+
+    font-style: italic;
+}
+
+
+.message-bottom {
+
+    margin-top: 28px;
+
+    color:
+        rgba(243,188,255,0.7);
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .welcome-content {
+
+        width:
+            90vw;
+    }
+
+
+    .welcome-content h1 {
+
+        font-size: 32px;
+    }
+
+
+    .welcome-text {
+
+        font-size: 14px;
+
+        padding:
+            0 10px;
+    }
+
+
+    .enter-button {
+
+        padding:
+            14px 19px;
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .welcome-hint {
+
+        font-size: 8px;
+    }
+
+
+    .intro {
+
+        top: 5%;
+    }
+
+
+    .intro h1 {
+
+        font-size: 29px;
+    }
+
+
+    .subtitle {
+
+        font-size: 13px;
+
+        padding:
+            0 15px;
+    }
+
+
+    .star {
+
+        font-size: 24px;
+    }
+
+
+    .planet-container {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.65);
+    }
+
+
+    .message-card {
+
+        padding:
+            50px
+            28px
+            35px;
+    }
+
+
+    .message-card #messageText {
+
+        font-size: 15px;
+
+        line-height: 1.8;
+    }
+
+
+    .progress {
+
+        right: 12px;
+
+        bottom: 15px;
+    }
+
+
+    .progress small {
+
+        display: none;
+    }
+
+
+    .drag-hint {
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .music-button {
+
+        left: 12px;
+
+        bottom: 15px;
+
+        padding:
+            8px 12px;
+
+        font-size: 11px;
+    }
+
+}
